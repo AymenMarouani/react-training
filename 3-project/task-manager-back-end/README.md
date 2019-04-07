@@ -17,4 +17,4 @@ No need to configure any database as the the data is persisted by an embedded H2
 ## Overview
 This back-end exposes a REST API to manage a list of ToDo tasks, you can consult the contract via this link http://localhost:9090/task-manager/swagger-ui.html.
 
-![alt text](./images/swagger.png "Swagger")
+![alt text](./images/Swagger.png "Swagger")
