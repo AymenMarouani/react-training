@@ -1,0 +1,8 @@
+.reveal section.title h1 {
+    font-size: 100pt;
+}
+
+.reveal section img { 
+    border: none;
+    box-shadow: none;
+}

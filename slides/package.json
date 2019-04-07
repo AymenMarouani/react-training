@@ -1,0 +1,18 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "description": "Slides for the React training",
+  "scripts": {
+    "build": "node load-slides.js",
+    "watch": "watch --interval=20 \"npm run build\""
+  },
+  "keywords": [],
+  "author": "Aymen Marouani",
+  "license": "ISC",
+  "dependencies": {
+    "asciidoctor-reveal.js": "^2.0.0"
+  },
+  "devDependencies": {
+    "watch": "^1.0.2"
+  }
+}
