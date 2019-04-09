@@ -14,21 +14,21 @@ public class ConstantsService {
 
   public ConstantsList getAll() {
     final Constant taskStatus = Constant.builder()
-        .code("status")
+        .name("status")
         .values(
             Arrays.stream(Status.values()).map(Status::name).collect(Collectors.toList())
         )
         .defaultValue(Status.SCHEDULED.name())
         .build();
     final Constant taskPriority = Constant.builder()
-        .code("priority")
+        .name("priority")
         .values(
             Arrays.stream(Priority.values()).map(Priority::name).collect(Collectors.toList())
         )
         .defaultValue(Priority.NORMAL.name())
         .build();
     final Constant statisticsWindow = Constant.builder()
-        .code("window")
+        .name("window")
         .values(
             Arrays.stream(Window.values()).map(Window::name).collect(Collectors.toList())
         )

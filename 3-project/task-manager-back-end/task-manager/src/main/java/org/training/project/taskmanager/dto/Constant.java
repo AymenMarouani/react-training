@@ -13,7 +13,7 @@ import lombok.Data;
 public class Constant {
 
   @ApiModelProperty(notes = "Name of the constant", position = 1)
-  private String code;
+  private String name;
 
   @Builder.Default
   @ApiModelProperty(notes = "List of the possible values for this constant", position = 2)
