@@ -79,12 +79,12 @@ the above code generates a dummy form where we have an input text and a submit b
 createElement(name, attributes, ...content)
 ```
 
-:information_source: From the exercise, you can see that using the React DOM API to describe the UI is very cumbersome and hard to read, but, _Good News_, we can develop React code without using its DOM API and the alternative is _JSX_.
-
 **Practice Exercise**: create a dummy simple page consisting of:
 - a main title
 - two separated forms each with a title, input text and reset button
 - two buttons for submit and cancel
+
+:information_source: From the exercise, you can see that using the React DOM API to describe the UI is very cumbersome and hard to read, but, _Good News_, we can develop React code without using its DOM API and the alternative is _JSX_.
 
 ## JSX
 JSX is a syntax that allows writing HTML inside the JavaScript code in a tag based form rather than a text input.  
@@ -456,7 +456,7 @@ ReactDOM.render(<SimpleHook />, mountPoint);
 ```
 It's a function, and this function get access to the state by importing and calling the _setState_ attachment or _hook_. To have access to the life cycle method inside the function, the hook _useEffect_ can be used. The Hook API is well documented in this [link](https://reactjs.org/docs/hooks-reference.html).
 
-:information_source: hooks can coexist with functional and class components, they are not meant to replace them (immediately).
+:information_source: hooks can coexist with functional and class components, they are not meant to replace them (for the short term).
 
 ## Going Further
 This part of the training did summarize the main concepts of React, we'll discover more throughout practice by setting up a JavaScript development environment for React and by coding a sample application. Finally, the ultimate reference for React is still its [official documentation site](https://reactjs.org/docs/getting-started.html).
