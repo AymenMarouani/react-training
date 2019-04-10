@@ -66,6 +66,24 @@ public class TaskManagerControllerTest extends AbstractControllerTest {
   }
 
   @Test
+  public void should_return_bad_request_when_inserting_a_finished_task_in_the_future()
+      throws Exception {
+    // Given
+    final LocalDate pastDate = LocalDate.now().plusMonths(10);
+    final TaskDto taskDto = TaskDto.builder()
+        .summary("A finished task in the future")
+        .date(pastDate)
+        .time(LocalTime.NOON)
+        .status(FINISHED)
+        .build();
+    // When
+    performPost(taskDto)
+        // Then
+        .andExpect(badRequest)
+        .andReturn();
+  }
+
+  @Test
   public void should_return_ok_and_default_status_and_priority_when_inserting_a_valid_task()
       throws Exception {
     // Given
