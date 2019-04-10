@@ -13,11 +13,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.training.project.taskmanager.dto.validation.NotInThePast;
+import org.training.project.taskmanager.dto.validation.Scheduled;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Scheduled
 @ApiModel(description = "A task for a given date.")
 public class TaskDto {
 
