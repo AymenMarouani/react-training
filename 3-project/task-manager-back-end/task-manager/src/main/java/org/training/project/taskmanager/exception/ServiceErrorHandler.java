@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,15 +27,18 @@ public class ServiceErrorHandler extends ResponseEntityExceptionHandler {
       final HttpHeaders headers,
       final HttpStatus status,
       final WebRequest request) {
-    String httpStatus = status.name();
-    int httpCode = status.value();
-    final List<RequestBodyValidationError> validationErrors =
-        getRequestBodyValidationRelatedErrors(validationException);
+    final String httpStatus = status.name();
+    final int httpCode = status.value();
+    final List<RequestBodyValidationError> fieldValidationErrors =
+        getFieldsValidationRelatedErrors(validationException);
+    final List<RequestError> requestBodyValidationErrors =
+        getRequestBodyValidationErrors(validationException);
     final FailedRequestDetails errorDetails = FailedRequestDetails.builder()
         .httpStatus(httpStatus)
         .httpCode(httpCode)
         .message("Invalid request body")
-        .validationErrors(validationErrors)
+        .validationErrors(fieldValidationErrors)
+        .requestErrors(requestBodyValidationErrors)
         .build();
     return new ResponseEntity<>(errorDetails, BAD_REQUEST);
   }
@@ -45,13 +49,14 @@ public class ServiceErrorHandler extends ResponseEntityExceptionHandler {
     return buildCustomExceptionResponseEntity(taskNotFoundException, "TASK_NOT_FOUND", NOT_FOUND);
   }
 
-  @ExceptionHandler(ArchivedTaskException.class)
+  @ExceptionHandler(IllegalTaskStateException.class)
   protected ResponseEntity<Object> handleArchivedTaskException(
-      ArchivedTaskException archivedTaskException) {
-    return buildCustomExceptionResponseEntity(archivedTaskException, "ARCHIVED_TASK", BAD_REQUEST);
+      IllegalTaskStateException illegalTaskStateException) {
+    return buildCustomExceptionResponseEntity(illegalTaskStateException, "ILLEGAL_TASK_STATUS",
+        BAD_REQUEST);
   }
 
-  private List<RequestBodyValidationError> getRequestBodyValidationRelatedErrors(
+  private List<RequestBodyValidationError> getFieldsValidationRelatedErrors(
       final MethodArgumentNotValidException validationException) {
     return validationException.getBindingResult()
         .getFieldErrors().stream()
@@ -59,11 +64,31 @@ public class ServiceErrorHandler extends ResponseEntityExceptionHandler {
         .collect(Collectors.toList());
   }
 
+  private List<RequestError> getRequestBodyValidationErrors(
+      final MethodArgumentNotValidException validationException) {
+    return validationException.getBindingResult()
+        .getGlobalErrors().stream()
+        .map(this::mapToRequestError)
+        .collect(Collectors.toList());
+  }
+
   private RequestBodyValidationError mapToFieldError(final FieldError error) {
+    final String fieldName = error.getField();
+    final String errorDefaultMessage = error.getDefaultMessage();
+    final Object rejectedValue = error.getRejectedValue();
     return RequestBodyValidationError.builder()
-        .field(error.getField())
-        .error(error.getDefaultMessage())
-        .value(error.getRejectedValue())
+        .field(fieldName)
+        .error(errorDefaultMessage)
+        .value(rejectedValue)
+        .build();
+  }
+
+  private RequestError mapToRequestError(final ObjectError objectError) {
+    final String errorCode = objectError.getCode();
+    final String errorDefaultMessage = objectError.getDefaultMessage();
+    return RequestError.builder()
+        .code(errorCode)
+        .error(errorDefaultMessage)
         .build();
   }
 

@@ -12,9 +12,10 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {ScheduledTaskValidator.class})
+@SuppressWarnings(value = "unused")
 public @interface Scheduled {
 
-  String message() default "Scheduled task must not be set to done";
+  String message() default "Tasks scheduled in the future must not be set to done";
 
   Class<?>[] groups() default {};
 

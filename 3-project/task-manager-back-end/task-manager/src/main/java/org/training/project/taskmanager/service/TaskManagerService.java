@@ -11,7 +11,7 @@ import org.training.project.taskmanager.dto.ResponseTaskDto;
 import org.training.project.taskmanager.dto.TaskDto;
 import org.training.project.taskmanager.dto.TaskList;
 import org.training.project.taskmanager.dto.mapper.TaskToTaskDtoMapper;
-import org.training.project.taskmanager.exception.ArchivedTaskException;
+import org.training.project.taskmanager.exception.IllegalTaskStateException;
 import org.training.project.taskmanager.exception.TaskNotFoundException;
 import org.training.project.taskmanager.model.Task;
 import org.training.project.taskmanager.repository.TaskRepository;
@@ -79,7 +79,8 @@ public class TaskManagerService {
     final LocalDate currentDate = LocalDate.now();
     final LocalDate taskDate = task.getDate().toLocalDate();
     if (taskDate.isBefore(currentDate)) {
-      throw new ArchivedTaskException(task.getId());
+      throw new IllegalTaskStateException(
+          "Task with id: " + task.getId() + " is already scheduled in the past");
     }
   }
 }
