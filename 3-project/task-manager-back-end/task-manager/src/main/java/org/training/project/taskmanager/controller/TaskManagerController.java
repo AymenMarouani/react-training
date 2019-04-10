@@ -66,7 +66,8 @@ public class TaskManagerController {
           "Can happen for the following reasons:"
               + "\n - the task to insert is malformed"
               + "\n - some mandatory fields are missing"
-              + "\n - the task is scheduled in the past")
+              + "\n - the task is scheduled in the past"
+              + "\n - the task is in the status FINISHED but in the future")
   })
   public ResponseEntity<TaskDto> create(
       @ApiParam(value = "Task to save by the application", required = true)
@@ -86,7 +87,8 @@ public class TaskManagerController {
           "Can happen for the following reasons:"
               + "\n - the task to update is malformed"
               + "\n - some mandatory fields are missing"
-              + "\n - the task to amend is in the past")
+              + "\n - the task to amend is in the past"
+              + "\n - marking a future task as done")
   })
   public ResponseEntity<TaskDto> update(
       @ApiParam(value = "Task data for the update", required = true)

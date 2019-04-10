@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.training.project.taskmanager.dto.Priority.NORMAL;
+import static org.training.project.taskmanager.dto.Status.FINISHED;
 import static org.training.project.taskmanager.dto.Status.SCHEDULED;
 
 import java.time.LocalDate;
@@ -159,6 +160,25 @@ public class TaskManagerControllerTest extends AbstractControllerTest {
         .summary("A task with a valid date but the task to update is in the past")
         .date(amendDate)
         .time(LocalTime.NOON)
+        .build();
+    // When
+    performPut(taskDto, id)
+        // Then
+        .andExpect(badRequest)
+        .andReturn();
+  }
+
+  @Test
+  public void should_return_bad_request_when_marking_a_future_task_as_done()
+      throws Exception {
+    // Given
+    final Long id = 7L;
+    final LocalDate amendDate = LocalDate.now().plusWeeks(3);
+    final TaskDto taskDto = TaskDto.builder()
+        .summary("A task in the future to be marked as done")
+        .date(amendDate)
+        .time(LocalTime.NOON)
+        .status(FINISHED)
         .build();
     // When
     performPut(taskDto, id)
