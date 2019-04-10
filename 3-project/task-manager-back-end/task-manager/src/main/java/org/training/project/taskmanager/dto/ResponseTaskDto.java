@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel(description = "A task given as a response by the API.")
 public class ResponseTaskDto extends TaskDto {
 
-  @ApiModelProperty(notes = "Technical identifier of the persisted task", position = 0)
+  @ApiModelProperty(notes = "Technical identifier of the persisted task")
   private Long id;
 
   @Builder(builderMethodName = "getBuilder")
@@ -27,15 +27,5 @@ public class ResponseTaskDto extends TaskDto {
       final Long id) {
     super(summary, description, priority, date, time, status);
     this.id = id;
-  }
-
-  public static ResponseTaskDto of(final Long id, final TaskDto taskDto) {
-    return new ResponseTaskDto(taskDto.getSummary(),
-        taskDto.getDescription(),
-        taskDto.getPriority(),
-        taskDto.getDate(),
-        taskDto.getTime(),
-        taskDto.getStatus(),
-        id);
   }
 }
