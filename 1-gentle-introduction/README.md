@@ -114,7 +114,7 @@ ReactDOM.render(
 )
 ```
 
-:warning: JSX is not exact HTML, it didn't mimic all its syntax, as an obvious example _className_ (used to style elements) is used in JSX instead of _class_ for HTML
+:warning: **_JSX is not exact HTML_**, it didn't mimic all its syntax, as an obvious example _className_ (used to style elements) is used in JSX instead of _class_ for HTML
 ``` jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
