@@ -454,4 +454,4 @@ It's possible to inspect the React UI components an their state and props on the
 :information_source: you can also open existing web sites based on React, namely Facebook.
 
 ## What's Next ?
-In the next section, we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_react-create-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.
+In the next section, we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_create-react-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.

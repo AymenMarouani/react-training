@@ -12,6 +12,8 @@ java -jar ./target/task-manager-0.0.1-SNAPSHOT.jar
 ```
 No need to configure any database as the the data is persisted by an embedded H2 database (see the link http://localhost:9090/task-manager/h2-console to query the data at application startup).
 
+:information_source: in the H2 console (see image below), make sure that the value `jdbc:h2:./data/task-manager.db` is set for the `JDBC URL` field to query the  data in the embedded H2 database.
+
 ![alt text](./images/H2Console.png "H2 console")
 
 ## Overview

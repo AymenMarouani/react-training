@@ -114,7 +114,7 @@ ReactDOM.render(
 )
 ```
 
-:warning: JSX is not exact HTML, it didn't mimic all its syntax, as an obvious example _className_ (used to style elements) is used in JSX instead of _class_ for HTML
+:warning: **_JSX is not exact HTML_**, it didn't mimic all its syntax, as an obvious example _className_ (used to style elements) is used in JSX instead of _class_ for HTML
 ``` jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -460,3 +460,6 @@ It's a function, and this function get access to the state by importing and call
 
 ## Going Further
 This part of the training did summarize the main concepts of React, we'll discover more throughout practice by setting up a JavaScript development environment for React and by coding a sample application. Finally, the ultimate reference for React is still its [official documentation site](https://reactjs.org/docs/getting-started.html).
+
+## What's Next ?
+We did all our examples on a sandbox, but we are supposed to create real world apps ready to be integrated and customized by environment thus the need to init and configure a React development environment for JavaScript. In the next chapter, we'll see how to setup a React boilerplate to start the development and packaging of a typical React application.
