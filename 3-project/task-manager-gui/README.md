@@ -1,5 +1,5 @@
 # Task Manager GUI
-This is the actual React user interface that we'll use as an elaborate an progressive example for the training.
+This is the actual React user interface that we'll use as an elaborate and progressive example for the training.
 
 We did follow the steps below when creating our application:
 - [Task Manager GUI](#task-manager-gui)
