@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import logo from '../../assets/images/react-logo.svg';
+import Header from '../UI/Header';
+import TasksTable from '../TaskManagement';
+import mockTasks from '../../shared/mocks/tasks';
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tasks: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      tasks: mockTasks,
+    });
+  }
+
   render() {
+    const { tasks } = this.state;
     return (
       <React.Fragment>
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <IconButton color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit">
-              Task Manager
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div style={{ width: '50%', height: '50%', margin: 'auto' }}>
-          <img src={logo} alt="React Logo" />
+        <Header />
+        <div style={{ height: '100%', width: '100%' }}>
+          <TasksTable tasks={tasks} />
         </div>
       </React.Fragment>
     );
