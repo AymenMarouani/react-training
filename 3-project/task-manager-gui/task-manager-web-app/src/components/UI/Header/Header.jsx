@@ -8,8 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 export default function Header() {
   return (
     <AppBar position="static" color="default">
-      <Toolbar>
-        <IconButton color="inherit" aria-label="Menu">
+      <Toolbar variant="dense">
+        <IconButton style={{ marginLeft: -18, marginRight: 10 }} color="inherit" aria-label="Menu">
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" color="inherit">
