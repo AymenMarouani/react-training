@@ -41,7 +41,10 @@ the _src_ directory will contain the code for our components, the _dist_ is for 
 ### Webpack 4
 We use [_Webpack_](https://webpack.js.org/) to build our JavaScript application, Webpack creates a single _bundle_ that contains all our front end code and can minify and obstruct it for production deliverables. We'll install all the dependencies of Webpack for our boilerplate  
 ``` Bash
-npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge html-webpack-plugin clean-webpack-plugin img-loader url-loader file-loader
+npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge \
+                    html-webpack-plugin \
+                    clean-webpack-plugin \
+                    img-loader url-loader file-loader
 ```
 Once installed, we have to configure Webpack for out project. The configuration for Webpack will be contained inside files under the _config_ directory.
 ``` Bash
@@ -223,7 +226,12 @@ module.exports = {
 The compilation of our React code is base on the _compiler [Babel](https://babeljs.io/)_ that transforms our ES6/JSX code into plan JavaScript compatible with any browser (even IE, by using the [_polyfill_](https://babeljs.io/docs/en/6.26.3/babel-polyfill) plugin).  
 To install Babel, run the following command
 ``` Bash
-npm install --save-dev @babel/core @babel/cli @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-syntax-dynamic-import @babel/plugin-syntax-import-meta @babel/plugin-transform-async-to-generator @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react @babel/register @babel/runtime babel-eslint babel-jest babel-loader babel-core@7.0.0-bridge.0
+npm install --save-dev @babel/core @babel/cli @babel/node @babel/plugin-proposal-class-properties \
+                    @babel/plugin-proposal-object-rest-spread @babel/plugin-syntax-dynamic-import \
+                    @babel/plugin-syntax-import-meta @babel/plugin-transform-async-to-generator \
+                    @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react \
+                    @babel/register @babel/runtime \
+                    babel-eslint babel-jest babel-loader babel-core@7.0.0-bridge.0
 ```
 We have to create a file named _.babelrc_ to configure our Babel configuration
 ``` Bash
@@ -253,7 +261,13 @@ and add the following content
 ### ESlint
 In addition to compiling and building, our project needs static source quality control to find potential bugs and make the code cleaner. For JavaScript, the most popular tool for _linting_ is [_ESLint_](https://eslint.org/). To setup ESLint run the following command
 ``` Bash
-npm install --save-dev eslint eslint-config-airbnb eslint-config-prettier eslint-loader eslint-plugin-babel eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react
+npm install --save-dev eslint eslint-config-airbnb \
+                    eslint-config-prettier eslint-loader \
+                    eslint-plugin-babel \
+                    eslint-plugin-import \
+                    eslint-plugin-jsx-a11y \
+                    eslint-plugin-prettier \
+                    eslint-plugin-react
 ```
 We need now to configure the linter; so create a file called _.eslintrc_
 ``` Bash
