@@ -5,6 +5,7 @@ We did follow the steps below when creating our application:
 - [Task Manager GUI](#task-manager-gui)
   - [1. Initialize the project](#1-initialize-the-project)
   - [2. Display mock data in a table](#2-display-mock-data-in-a-table)
+  - [3. Display the tasks in a tabbed view with progress bar](#3-display-the-tasks-in-a-tabbed-view-with-progress-bar)
 
 ## 1. Initialize the project
 We'll start by creating a blank React application using the command line tool [`create-react-app`](https://github.com/facebook/create-react-app). First we have to install it by invoking
@@ -111,5 +112,12 @@ export default class Home extends Component {
 ```
 
 ![alt text](./images/2-mock-tasks-table.png "Mock tasks displayed in a table")
+
+[^Steps](#task-manager-gui)
+
+## 3. Display the tasks in a tabbed view with progress bar
+In this step, we did make more components to display in details the tasks' status. Those components are (for the moment) a progress bar indicating the percent of done tasks and a tabbed view with tasks by status. The definition of the components are under the folder `src/components/TaskManagement`.
+
+![alt text](./images/3-display-tasks-in-tabbed-form.png "Mock tasks displayed in a tabbed form")
 
 [^Steps](#task-manager-gui)
