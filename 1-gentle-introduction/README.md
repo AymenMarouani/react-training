@@ -495,6 +495,6 @@ This part of the training did summarize the main concepts of React, we'll discov
 **[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## What's Next
-We did all our examples on a sandbox, but we are supposed to create real world applications ready to be integrated and customized by environment. In the next chapter, we'll see how to setup a React boilerplate JavaScript development environment to start coding and packaging a typical React application.
+We did all our examples on a sandbox, but we are supposed to create real world applications ready to be integrated and customized by environment. In the [next chapter](../2-step-by-step-boiler-plate/#creating-a-react-development-environment-from-scratch), we'll see how to setup a React boilerplate JavaScript development environment to start coding and packaging a typical React application.
 
 **[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
