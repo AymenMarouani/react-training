@@ -4,7 +4,7 @@ This section introduces the concept of components in React and the underlying de
 
 - [React Basic Concepts Jump-start](#react-basic-concepts-jump-start)
   - [Setup](#setup)
-  - [Hello React !!!](#hello-react)
+  - [Hello React](#hello-react)
   - [The React DOM API](#the-react-dom-api)
   - [JSX](#jsx)
   - [Props and the Functional React Component](#props-and-the-functional-react-component)
@@ -26,8 +26,8 @@ import ReactDOM from 'react-dom'
 
 **[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
-## Hello React !!!
-Our _'Hello World !!!'_ program for React is the following
+## Hello React
+Our _'Hello World'_ program for React is the following
 ``` JavaScript
 import React from 'react'
 import ReactDOM from 'react-dom'
