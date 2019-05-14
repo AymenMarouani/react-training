@@ -13,7 +13,7 @@ This section introduces the concept of components in React and the underlying de
   - [The Component's LifeCycle](#the-components-lifecycle)
   - [Introducing Hooks](#introducing-hooks)
   - [Going Further](#going-further)
-  - [What's Next ?](#whats-next)
+  - [What's Next](#whats-next)
 
 ## Setup
 1. Go to the following [link](https://codesandbox.io/s/vanilla)
@@ -494,7 +494,7 @@ This part of the training did summarize the main concepts of React, we'll discov
 
 **[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
-## What's Next ?
+## What's Next
 We did all our examples on a sandbox, but we are supposed to create real world applications ready to be integrated and customized by environment. In the next chapter, we'll see how to setup a React boilerplate JavaScript development environment to start coding and packaging a typical React application.
 
 **[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
