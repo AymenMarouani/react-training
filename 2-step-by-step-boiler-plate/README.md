@@ -19,7 +19,7 @@ We are going in this section to create a JavaScript development environment for 
     - [React Code](#react-code)
     - [Building and Running the Example](#building-and-running-the-example)
   - [React Developer Tool Browser Extension](#react-developer-tool-browser-extension)
-  - [What's Next ?](#whats-next)
+  - [What's Next](#whats-next)
 
 ## Motivation
 Although automatic tools for creating a complete seed for React development environment exists, we still need; for the purpose of learning; to create manually our development environment in order to understand the React and JavaScript ecosystem and be able to customize the delivery of our final application.
@@ -514,7 +514,7 @@ It's possible to inspect the React UI components an their state and props on the
 
 **[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
-## What's Next ?
+## What's Next
 In the next section, we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_create-react-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.
 
 **[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
