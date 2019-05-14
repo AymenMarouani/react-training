@@ -1,9 +1,30 @@
-# Creating React Development Environment from Scratch
+# Creating a React Development Environment from Scratch
 
 We are going in this section to create a JavaScript development environment for React from zero to a complete viable setup. This development environment will include packaging, code quality and compilation tools in addition to the React library.
 
+- [Creating a React Development Environment from Scratch](#creating-a-react-development-environment-from-scratch)
+  - [Motivation](#motivation)
+  - [Prerequisites](#prerequisites)
+  - [Environment Setup](#environment-setup)
+    - [Project Directory](#project-directory)
+    - [Webpack 4](#webpack-4)
+    - [Babel 7](#babel-7)
+    - [ESlint](#eslint)
+    - [Prettier](#prettier)
+    - [React](#react)
+    - [Visual Studio Code](#visual-studio-code)
+    - [Git](#git)
+  - [Testing the Setup](#testing-the-setup)
+    - [Scripting Setup](#scripting-setup)
+    - [React Code](#react-code)
+    - [Building and Running the Example](#building-and-running-the-example)
+  - [React Developer Tool Browser Extension](#react-developer-tool-browser-extension)
+  - [What's Next ?](#whats-next)
+
 ## Motivation
 Although automatic tools for creating a complete seed for React development environment exists, we still need; for the purpose of learning; to create manually our development environment in order to understand the React and JavaScript ecosystem and be able to customize the delivery of our final application.
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ## Prerequisites
 Before we start, make sure that you have the following programs:
@@ -16,6 +37,8 @@ node -v
   ``` Bash
   git --version
   ```
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ## Environment Setup
 
@@ -37,6 +60,8 @@ mkdir dist
 mkdir config
 ```
 the _src_ directory will contain the code for our components, the _dist_ is for the packaged resulting application (more details in the next section) and the _config_ directory is for configuration files of the other tools.
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ### Webpack 4
 We use [_Webpack_](https://webpack.js.org/) to build our JavaScript application, Webpack creates a single _bundle_ that contains all our front end code and can minify and obstruct it for production deliverables. We'll install all the dependencies of Webpack for our boilerplate  
@@ -222,6 +247,8 @@ module.exports = {
 };
 ```
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ### Babel 7
 The compilation of our React code is base on the _compiler [Babel](https://babeljs.io/)_ that transforms our ES6/JSX code into plan JavaScript compatible with any browser (even IE, by using the [_polyfill_](https://babeljs.io/docs/en/6.26.3/babel-polyfill) plugin).  
 To install Babel, run the following command
@@ -257,6 +284,8 @@ and add the following content
     ]
 }
 ```
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ### ESlint
 In addition to compiling and building, our project needs static source quality control to find potential bugs and make the code cleaner. For JavaScript, the most popular tool for _linting_ is [_ESLint_](https://eslint.org/). To setup ESLint run the following command
@@ -327,6 +356,8 @@ node_modules/
 dist/
 ```
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ### Prettier
 Our JavaScript code needs to be formatted too, so we use [_Prettier_](https://prettier.io/) to auto-format our source files. We install Prettier with this command
 ``` Bash
@@ -348,11 +379,15 @@ with the following content
 }
 ```
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ### React
 Execute the following command to add the React library to the project
 ``` Bash
 npm install --save react react-dom
 ```
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ### Visual Studio Code
 Make sure that the following plugins are available in your editor:
@@ -377,6 +412,8 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 ```
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ### Git
 We are going to tell _git_ to ignore our JavaScript imported libraries and some of the local content via the file _.gitignore_
 ```
@@ -386,6 +423,8 @@ dist
 ```
 
 :information_source: for advanced setup (out of scope), we can configure _git hooks_ to be executed before committing, take a look at [_Husky_](https://github.com/typicode/husky).
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ## Testing the Setup
 Finally, we finished creating a viable development environment for React, we can now test it by specifying how to build it and run it with a simple code.
@@ -410,6 +449,8 @@ The attributes are for the commands to be executed by _npm_ like
 npm run lint
 ```
 to run code quality scan by lint.
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ### React Code
 At the root directory of the project, add the file _index.html_ with the following content
@@ -440,6 +481,8 @@ ReactDOM.render(
 
 :information_source: if the VS Code setup with Prettier and ESLint did go well, you'll notice that it did format the code automatically after saving.
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ### Building and Running the Example
 We have to import the project dependencies, so run first the following command
 ``` Bash
@@ -462,10 +505,16 @@ If all goes well, the project can be found running at the URL _http://localhost:
 
 :information_source: try to make changes inside the script _index.js_ or the main page _index.html_ and see how those changes are automatically visible in the application, and this is one of the features of Webpack for the development mode.
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ## React Developer Tool Browser Extension
 It's possible to inspect the React UI components an their state and props on the browser using the plugin [React Developer Tools](https://github.com/facebook/react-devtools). Install this plugin in your browser of choice and build the example application both in development and production mode and see how the output differs and also behavior of the plugin.
 
 :information_source: you can also open existing web sites based on React, namely Facebook.
 
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
+
 ## What's Next ?
 In the next section, we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_create-react-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.
+
+**[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**

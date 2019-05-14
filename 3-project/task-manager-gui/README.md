@@ -32,7 +32,7 @@ npm start
 
 :information_source: install the [React Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) VSCode extension to type React specific code faster.
 
-[^Steps](#task-manager-gui)
+**[:arrow_double_up: Steps](#task-manager-gui)**
 
 ## 2. Display mock data in a table
 We began by displaying mock data in a tabular form in the front page. We did create two functional React components which are the header and the tasks table.
@@ -113,11 +113,11 @@ export default class Home extends Component {
 
 ![alt text](./images/2-mock-tasks-table.png "Mock tasks displayed in a table")
 
-[^Steps](#task-manager-gui)
+**[:arrow_double_up: Steps](#task-manager-gui)**
 
 ## 3. Display the tasks in a tabbed view with progress bar
 In this step, we did make more components to display in details the tasks' status. Those components are (for the moment) a progress bar indicating the percent of done tasks and a tabbed view with tasks by status. The definition of the components are under the folder `src/components/TaskManagement`.
 
 ![alt text](./images/3-display-tasks-in-tabbed-form.png "Mock tasks displayed in a tabbed form")
 
-[^Steps](#task-manager-gui)
+**[:arrow_double_up: Steps](#task-manager-gui)**

@@ -2,6 +2,19 @@
 
 This section introduces the concept of components in React and the underlying details behind. We'll use a [JavaScript playground](https://codesandbox.io/) to practice and play with the given snippets.
 
+- [React Basic Concepts Jump-start](#react-basic-concepts-jump-start)
+  - [Setup](#setup)
+  - [Hello React !!!](#hello-react)
+  - [The React DOM API](#the-react-dom-api)
+  - [JSX](#jsx)
+  - [Props and the Functional React Component](#props-and-the-functional-react-component)
+  - [State and the Class Component](#state-and-the-class-component)
+  - [Custom Events](#custom-events)
+  - [The Component's LifeCycle](#the-components-lifecycle)
+  - [Introducing Hooks](#introducing-hooks)
+  - [Going Further](#going-further)
+  - [What's Next ?](#whats-next)
+
 ## Setup
 1. Go to the following [link](https://codesandbox.io/s/vanilla)
 2. Clear the content of the file _index.js_
@@ -10,6 +23,8 @@ This section introduces the concept of components in React and the underlying de
 import React from 'react'
 import ReactDOM from 'react-dom'
 ```
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## Hello React !!!
 Our _'Hello World !!!'_ program for React is the following
@@ -52,6 +67,8 @@ In a nutshell, we have
 ReactDOM.render(element, mountPoint)
 ```
 
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
+
 ## The React DOM API
 The _React DOM API_ allows us to describe our UI using a _declarative_ style
 ``` JavaScript
@@ -85,6 +102,8 @@ createElement(name, attributes, ...content)
 - two buttons for submit and cancel
 
 :information_source: From the exercise, you can see that using the React DOM API to describe the UI is very cumbersome and hard to read, but, _Good News_, we can develop React code without using its DOM API and the alternative is _JSX_.
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## JSX
 JSX is a syntax that allows writing HTML inside the JavaScript code in a tag based form rather than a text input.  
@@ -130,6 +149,8 @@ ReactDOM.render(
 :information_source: to see how JSX is converted in terms of the React DOM API, take a look at the following [link](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=GYVwdgxgLglg9mABAcwE4FN2zMgFASkQG8AoRRDKEVJAHgBMYA3APgAl0AbTuRAJXQBDaIgCE42gHpGrANwkAvkA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2016%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.2).
 
 **Practice Exercise**: rewrite the previous exercise using the JSX syntax.
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## Props and the Functional React Component
 So far we mentioned frequently the term _Component_ without showing a concrete example, this was done in purpose because of the _step-by-step_ nature of this training. So the time has come for the revelation, here's the simplest React component that can exist in nature:
@@ -261,6 +282,8 @@ const title = props.title;
 
 **Practice Exercise**: make the components in the previous exercise pass props between them.
 
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
+
 ## State and the Class Component
 The components can now be reused as functions and interact between them by the mean of props. But what if we want those functional components to hold inner data values and more logic inside ? If we stick into functions we will run into trouble by making them complicated. Encapsulating inner data and behavior is done by the concept of the _class_ which is implemented by JavaScript and used by React as the following
 ``` jsx
@@ -289,6 +312,8 @@ The class must have the _render_ method implemented. Notice the use of a constru
 :information_source: class components in React can extend _React.PureComponent_. This class is the same as _React.Component_ but it does _shallow_ state comparison for the refresh. This will enhance performance but we must keep the state and props immutable inside the class.
 
 **Practice Exercise**: convert the components in the previous exercise into the class form with inners behavior and state.
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## Custom Events
 We have now components that can
@@ -405,6 +430,8 @@ this.setState({
 
 **Practice Exercise**: add button events to the components in the previous exercise.
 
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
+
 ## The Component's LifeCycle
 Class components doesn't only encapsulate state and behavior, they also have a life cycle. This life cycle starts by component creation aka _mounting_, props reception, updating and then _un-mounting_. This [diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) shows the main phases in the component life cycle, which are:
 1. _Mounting_: where the component is created and attached to the DOM
@@ -416,6 +443,8 @@ We can attach our custom behavior to these spots in the life cycle by adding _li
 - _componentWillUnmount()_: called before detaching the component from the DOM, it allows us to free some data before disposing the component
 
 Practical utility of these methods will be shown in the sample application developed for this training.
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
 
 ## Introducing Hooks
 This feature was introduced in the version 16.7 of React. Hooks are the new form for the components in React; this means that the finest granularity that a component can have is in the form of a _Hook_ which is a function that can have a state and a life cycle calls like any class component. What justifies the introduction of hooks to React ? two main reasons:
@@ -458,8 +487,14 @@ It's a function, and this function get access to the state by importing and call
 
 :information_source: hooks can coexist with functional and class components, they are not meant to replace them (for the short term).
 
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
+
 ## Going Further
 This part of the training did summarize the main concepts of React, we'll discover more throughout practice by setting up a JavaScript development environment for React and by coding a sample application. Finally, the ultimate reference for React is still its [official documentation site](https://reactjs.org/docs/getting-started.html).
 
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
+
 ## What's Next ?
 We did all our examples on a sandbox, but we are supposed to create real world applications ready to be integrated and customized by environment. In the next chapter, we'll see how to setup a React boilerplate JavaScript development environment to start coding and packaging a typical React application.
+
+**[:arrow_double_up: back to top](#react-basic-concepts-jump-start)**
