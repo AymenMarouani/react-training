@@ -515,6 +515,6 @@ It's possible to inspect the React UI components an their state and props on the
 **[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
 ## What's Next
-In the next section, we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_create-react-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.
+In the [next section](../3-project/task-manager-gui/#task-manager-gui), we'll not do again the same manual setup, we'll instead automate the environment creation using the command [_create-react-app_](https://github.com/facebook/create-react-app) and develop a typical "useful" React application.
 
 **[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
