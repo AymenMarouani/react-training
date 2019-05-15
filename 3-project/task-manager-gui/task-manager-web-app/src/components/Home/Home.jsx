@@ -7,9 +7,7 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <Header />
-        <div style={{ height: '100%', width: '100%' }}>
-          <TasksOverview />
-        </div>
+        <TasksOverview />
       </React.Fragment>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/tasksUtils';
+import styles from './TasksProgressIndicator.module.css';
 
 export default function TasksProgressIndicator(props) {
   const { tasks } = props;
@@ -13,23 +14,29 @@ export default function TasksProgressIndicator(props) {
   const cancelledTasksPercent = totalTasksCount !== 0 ? (cancelledTasksCount / totalTasksCount) * 100 : 0;
   return (
     <React.Fragment>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          height: '15px',
-          marginTop: '2px',
-          marginBottom: '2px',
-        }}
-      >
+      <div className={styles.mainContainer}>
         <Tooltip title={`${scheduledTasksPercent}% scheduled tasks`}>
-          <div style={{ backgroundColor: 'blue', width: `${scheduledTasksPercent}%` }} />
+          <div
+            style={{
+              backgroundColor: 'blue',
+              marginRight: '1px',
+              borderRadius: '5px',
+              width: `${scheduledTasksPercent}%`,
+            }}
+          />
         </Tooltip>
         <Tooltip title={`${finishedTasksPercent}% finished tasks`}>
-          <div style={{ backgroundColor: 'green', width: `${finishedTasksPercent}%` }} />
+          <div
+            style={{
+              backgroundColor: 'green',
+              marginRight: '1px',
+              borderRadius: '5px',
+              width: `${finishedTasksPercent}%`,
+            }}
+          />
         </Tooltip>
         <Tooltip title={`${cancelledTasksPercent}% cancelled tasks`}>
-          <div style={{ backgroundColor: 'yellow', width: `${cancelledTasksPercent}%` }} />
+          <div style={{ backgroundColor: 'grey', borderRadius: '5px', width: `${cancelledTasksPercent}%` }} />
         </Tooltip>
       </div>
     </React.Fragment>
