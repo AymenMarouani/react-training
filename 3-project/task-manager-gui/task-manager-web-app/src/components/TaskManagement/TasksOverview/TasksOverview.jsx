@@ -25,7 +25,7 @@ export default class TasksOverview extends Component {
     return (
       <React.Fragment>
         <div className={styles.topContainer}>
-          <Typography variant="h5" color="inherit">
+          <Typography variant="h4" color="inherit">
             To Do List for {moment().format('dddd, MMMM Do YYYY')}
           </Typography>
         </div>

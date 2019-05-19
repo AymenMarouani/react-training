@@ -3,6 +3,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TasksTable from '../TasksTable';
 import { getScheduledTasks, getFinishedTasks, getCancelledTasks } from '../../../common/utils/tasksUtils';
+import styles from './TasksTabbedContainer.styles';
 
 export default class TasksTabbedContainer extends Component {
   constructor(props) {
@@ -30,10 +31,10 @@ export default class TasksTabbedContainer extends Component {
     return (
       <React.Fragment>
         <Tabs value={selectedTabIndex} onChange={this.handleChange}>
-          <Tab label={`${totalTasksCount} tasks`} />
-          <Tab label={`${scheduledTasksCount} scheduled tasks`} />
-          <Tab label={`${finishedTasksCount} finished tasks`} />
-          <Tab label={`${cancelledTasksCount} cancelled tasks`} />
+          <Tab style={styles.tabContent} label={`${totalTasksCount} tasks`} />
+          <Tab style={styles.tabContent} label={`${scheduledTasksCount} scheduled tasks`} />
+          <Tab style={styles.tabContent} label={`${finishedTasksCount} finished tasks`} />
+          <Tab style={styles.tabContent} label={`${cancelledTasksCount} cancelled tasks`} />
         </Tabs>
         {selectedTabIndex === 0 && <TasksTable tasks={tasks} />}
         {selectedTabIndex === 1 && <TasksTable tasks={scheduledTasks} />}
