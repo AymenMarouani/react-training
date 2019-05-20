@@ -124,6 +124,126 @@ In this step, we did make more components to display in details the tasks' statu
 **[:arrow_double_up: Steps](#task-manager-gui)**
 
 ## Styling the components the right way
+Our components are a mix of JSX syntax with _iniline Styling_ for CSS  
+``` JavaScript
+export default class Home extends Component {
+  .
+  .
+  .
 
+  render() {
+    const { tasks } = this.state;
+    return (
+      <React.Fragment>
+        <Header />
+        <div style={{ height: '100%', width: '100%' }}>
+          <TasksTable tasks={tasks} />
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+```
+this method of adding custom appearance via inline styles is not appropriate as it makes our components 'bloated' with code that can be externalized. Many techniques exists to add styling to React components mainly **_React CSS Modules_**  
+``` JavaScript
+import React, { Component } from 'react';
+  .
+  .
+  .
+import styles from './TasksOverview.module.css';
+
+export default class TasksOverview extends Component {
+  .
+  .
+  .
+
+  render() {
+    const { tasks } = this.state;
+    return (
+      <React.Fragment>
+        <div className={styles.topContainer}>
+          .
+          .
+          .
+        </div>
+        <TasksProgressIndicator tasks={tasks} />
+        <TasksTabbedContainer tasks={tasks} />
+      </React.Fragment>
+    );
+  }
+}
+```
+and the CSS is externalized in the separate file _TasksOverview.module.css_ as the following  
+``` CSS
+.topContainer {
+  margin-top: 23px;
+  margin-bottom: 17px;
+  margin-left: 15px;
+}
+```
+:warning: because we did use the _create-react-app_ tool, the _Webpack_ configuration for loading CSS requires a naming convention as the following `[name].module.css` as mentioned in its [official documentation](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet).
+
+:information_source: if you want to take a look at the 'hidden' boilerplate configuration files that _create-react-app_ did use and ,by the way, take back control of your environment, you can invoque the command  
+``` Bash
+npm run eject
+```
+this will copy all the configuration files in your local folder so you can edit them. Add the following content to you Webpack configuration file  
+``` JavaScript
+{
+  loader: require.resolve('css-loader'),
+  options: {
+    importLoaders: 1,
+    modules: true,
+    localIdentName: "[name]_[local]_[hash:base64:5]"  
+  },
+},
+```
+this instructs Webpack to create CSS files with local scope having randomly hashed name.
+
+:warning: the command `npm run eject` is irreversible.
+
+The second technique used for styling React components is **_CSS in JS_**. In fact, _material-ui_ components have their own styles and they cannot be overridden using the usual React CSS Modules used above.
+``` JavaScript
+import React, { Component } from 'react';
+  .
+  .
+  .
+import styles from './TasksTabbedContainer.styles';
+
+export default class TasksTabbedContainer extends Component {
+  .
+  .
+  .
+
+  render() {
+    const { tasks } = this.props;
+    .
+    .
+    .
+    return (
+      <React.Fragment>
+        <Tabs value={selectedTabIndex} onChange={this.handleChange}>
+          <Tab style={styles.tabContent} label={`${totalTasksCount} tasks`} />
+          .
+          .
+          .
+      </React.Fragment>
+    );
+  }
+}
+```
+the file _TasksTabbedContainer.styles.js_ contains the style description as JavaScript objects  
+``` JavaScript
+const styles = {
+  tabContent: {
+    fontSize: '1em',
+    fontWeight: 'bold',
+  },
+};
+
+export default styles;
+```
+
+![alt text](./images/4-styling-the-components.png "Tasks page with styles")
 
 **[:arrow_double_up: Steps](#task-manager-gui)**
