@@ -181,7 +181,7 @@ and the CSS is externalized in the separate file _TasksOverview.module.css_ as t
   margin-left: 15px;
 }
 ```
-:warning: because we did use the _create-react-app_ tool, the _Webpack_ configuration for loading CSS requires a naming convention as the following `[name].module.css` as mentioned in its [official documentation](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet).
+:warning: because we did use the _create-react-app_ tool, the _Webpack_ configuration for loading CSS requires the naming convention `[name].module.css` as mentioned in its [official documentation](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet).
 
 :information_source: if you want to take a look at the 'hidden' boilerplate configuration files that _create-react-app_ did use and ,by the way, take back control of your environment, you can invoque the command  
 ``` Bash
