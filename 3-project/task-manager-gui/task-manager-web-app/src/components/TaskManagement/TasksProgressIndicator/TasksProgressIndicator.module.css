@@ -1,0 +1,27 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  height: 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.progressBar {
+  margin-right: 1px;
+  border-radius: 5px;
+}
+
+.scheduledTasksProgressBar {
+  composes: progressBar;
+  background-color: blue;
+}
+
+.finishedTasksProgressBar {
+  composes: progressBar;
+  background-color: green;
+}
+
+.cancelledTasksProgressBar {
+  composes: progressBar;
+  background-color: gray;
+}

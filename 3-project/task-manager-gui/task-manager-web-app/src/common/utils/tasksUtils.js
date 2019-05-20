@@ -1,3 +1,15 @@
+export const TASK_PRIORITY = {
+  HIGH: 'HIGH',
+  NORMAL: 'NORMAL',
+  LOW: 'LOW',
+};
+
+export const TASK_STATUS = {
+  SCHEDULED: 'SCHEDULED',
+  FINISHED: 'FINISHED',
+  CANCELLED: 'CANCELLED',
+};
+
 export const getScheduledTasks = (tasks = []) => {
   return tasks.filter(task => task.status === 'SCHEDULED');
 };
