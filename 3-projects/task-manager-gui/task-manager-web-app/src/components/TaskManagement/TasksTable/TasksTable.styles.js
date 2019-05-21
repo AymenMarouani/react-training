@@ -3,10 +3,10 @@ const styles = {
     width: '5%',
   },
   summaryColumn: {
-    width: '40%',
+    width: '43%',
   },
   descriptionColumn: {
-    width: '35%',
+    width: '42%',
   },
   dateColumn: {
     width: '17%',
@@ -23,7 +23,7 @@ const styles = {
     color: 'black',
   },
   rowContent: {
-    fontSize: '17px',
+    fontSize: '15px',
   },
 };
 
