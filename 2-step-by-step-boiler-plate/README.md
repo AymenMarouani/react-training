@@ -24,10 +24,10 @@ We are going in this section to create a JavaScript development environment for 
 ## Motivation and overview
 Although automatic tools for creating a complete seed for React development environment exists, we still need; for the purpose of learning; to create manually our development environment in order to understand the React and JavaScript ecosystem and be able to customize the delivery of our final application.  
 A typical development environment for React is composed mainly of:
-- _package manager_: to manage project dependencies, we'll use [_npm_](https://www.npmjs.com/)
-- _compiler_: to translate the JSX and ES6 syntax into a portable JavaScript to run regardless of the browser, [_Babel_](https://babeljs.io/) is upo for this task
-- _bundler_: to package and produce a small footprint HTML file to run on the browser, we'll use [_Webpack_](https://webpack.js.org/)
-- _utilities_: like code linting and formatting, such as [_ESlint_]() and [_Prettier_]() respectively
+- **_package manager_**: to manage project dependencies, we'll use [_npm_](https://www.npmjs.com/)
+- **_compiler_**: to translate the JSX and ES6 syntax into a portable JavaScript to run regardless of the browser, [_Babel_](https://babeljs.io/) is upo for this task
+- **_bundler_**: to package and produce a small footprint HTML file to run on the browser, we'll use [_Webpack_](https://webpack.js.org/)
+- **_utilities_**: like code linting and formatting, such as [_ESlint_]() and [_Prettier_]() respectively
 
 **[:arrow_double_up: Steps](#creating-a-react-development-environment-from-scratch)**
 
