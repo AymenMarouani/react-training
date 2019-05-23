@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import task from '../../../prop-types/taskPropType';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TasksTable from '../TasksTable';
-import { getScheduledTasks, getFinishedTasks, getCancelledTasks } from '../../../common/utils/tasksUtils';
+import { getScheduledTasks, getFinishedTasks, getCancelledTasks } from '../../../common/utils/taskUtils';
 import styles from './TasksTabbedContainer.styles';
 
 export default class TasksTabbedContainer extends Component {
@@ -44,3 +46,7 @@ export default class TasksTabbedContainer extends Component {
     );
   }
 }
+
+TasksTabbedContainer.propTypes = {
+  tasks: PropTypes.arrayOf(task),
+};

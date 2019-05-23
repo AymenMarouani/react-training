@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
+import task from '../../../prop-types/taskPropType';
 import Typography from '@material-ui/core/Typography';
 import TasksProgressIndicator from '../TasksProgressIndicator';
 import TasksTabbedContainer from '../TasksTabbedContainer';
@@ -35,3 +37,7 @@ export default class TasksOverview extends Component {
     );
   }
 }
+
+TasksOverview.propTypes = {
+  tasks: PropTypes.arrayOf(task),
+};

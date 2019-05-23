@@ -1,6 +1,6 @@
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
-import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/tasksUtils';
+import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/taskUtils';
 import styles from './TasksProgressIndicator.module.css';
 
 export default function TasksProgressIndicator(props) {

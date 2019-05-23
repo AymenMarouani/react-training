@@ -7,6 +7,7 @@ We did follow the steps below when creating our application:
   - [Display mock data in a table](#display-mock-data-in-a-table)
   - [Display the tasks in a tabbed view with a progress bar](#display-the-tasks-in-a-tabbed-view-with-a-progress-bar)
   - [Styling the components the right way](#styling-the-components-the-right-way)
+  - [Checking props with PropTypes](#checking-props-with-proptypes)
 
 ## Initialize the project
 We'll start by creating a blank React application using the command line tool [`create-react-app`](https://github.com/facebook/create-react-app). First we have to install it by invoking
@@ -245,5 +246,10 @@ export default styles;
 ```
 
 ![alt text](./images/4-styling-the-components.png "Tasks page with styles")
+
+**[:arrow_double_up: Steps](#task-manager-gui)**
+
+## Checking props with PropTypes
+
 
 **[:arrow_double_up: Steps](#task-manager-gui)**

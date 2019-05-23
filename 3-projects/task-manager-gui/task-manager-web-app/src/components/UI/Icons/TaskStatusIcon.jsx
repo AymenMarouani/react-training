@@ -1,6 +1,6 @@
 import React from 'react';
 import { SvgIcon } from '@material-ui/core';
-import { TASK_STATUS } from '../../../common/utils/tasksUtils';
+import { TASK_STATUS } from '../../../common/utils/taskUtils';
 
 export default function TaskStatusIcon(props) {
   const { taskStatus } = props;
