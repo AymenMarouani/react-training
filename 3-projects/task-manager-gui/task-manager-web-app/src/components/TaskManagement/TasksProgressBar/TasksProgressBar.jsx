@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
+import task from '../../../prop-types/taskPropType';
 import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/taskUtils';
-import styles from './TasksProgressIndicator.module.css';
+import styles from './TasksProgressBar.module.css';
 
-export default function TasksProgressIndicator(props) {
+export default function TasksProgressBar(props) {
   function calculatePercentage(count, totalCount) {
     return totalCount !== 0 ? (count / totalCount) * 100 : 0;
   }
@@ -32,3 +34,7 @@ export default function TasksProgressIndicator(props) {
     </React.Fragment>
   );
 }
+
+TasksProgressBar.propTypes = {
+  tasks: PropTypes.arrayOf(task),
+};

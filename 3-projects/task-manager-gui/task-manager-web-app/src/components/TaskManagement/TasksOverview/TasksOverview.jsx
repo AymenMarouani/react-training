@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import task from '../../../prop-types/taskPropType';
 import Typography from '@material-ui/core/Typography';
-import TasksProgressIndicator from '../TasksProgressIndicator';
+import TasksProgressBar from '../TasksProgressBar';
 import TasksTabbedContainer from '../TasksTabbedContainer';
 import mockTasks from '../../../common/mocks/tasks';
 import styles from './TasksOverview.module.css';
@@ -31,7 +31,7 @@ export default class TasksOverview extends Component {
             To Do List for {moment().format('dddd, MMMM Do YYYY')}
           </Typography>
         </div>
-        <TasksProgressIndicator tasks={tasks} />
+        <TasksProgressBar tasks={tasks} />
         <TasksTabbedContainer tasks={tasks} />
       </React.Fragment>
     );
