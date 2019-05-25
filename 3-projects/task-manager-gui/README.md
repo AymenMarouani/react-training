@@ -7,6 +7,7 @@ We did follow the steps below when creating our application:
   - [Display mock data in a table](#display-mock-data-in-a-table)
   - [Display the tasks in a tabbed view with a progress bar](#display-the-tasks-in-a-tabbed-view-with-a-progress-bar)
   - [Styling the components the right way](#styling-the-components-the-right-way)
+  - [Checking props with PropTypes](#checking-props-with-proptypes)
 
 ## Initialize the project
 We'll start by creating a blank React application using the command line tool [`create-react-app`](https://github.com/facebook/create-react-app). First we have to install it by invoking
@@ -124,7 +125,7 @@ In this step, we did make more components to display in details the tasks' statu
 **[:arrow_double_up: Steps](#task-manager-gui)**
 
 ## Styling the components the right way
-Our components are a mix of JSX syntax with _iniline Styling_ for CSS  
+Our components are a mix of JSX syntax with _inline Styling_ for CSS  
 ``` JavaScript
 export default class Home extends Component {
   .
@@ -245,5 +246,82 @@ export default styles;
 ```
 
 ![alt text](./images/4-styling-the-components.png "Tasks page with styles")
+
+**[:arrow_double_up: Steps](#task-manager-gui)**
+
+## Checking props with PropTypes
+Props are the mechanism used by the components to pass values. We need often to check the integrity of the passed types in props, for example ensuring that a date is passed not a string or that a mandatory prop value is not missing. React offers PropTypes to check for props passed for functional and class components. In our project, a list of tasks is passed between components, and the task type has well defined mandatory attributes as shown below  
+``` JavaScript
+import PropTypes from 'prop-types';
+import CustomProps from './customProps';
+import { TASK_PRIORITY_VALUES, TASK_STATUS_VALUES } from '../common/utils/taskUtils';
+
+const task = {
+  id: PropTypes.number,
+  summary: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  priority: PropTypes.oneOf(TASK_PRIORITY_VALUES).isRequired,
+  date: CustomProps.localDateString,
+  time: CustomProps.localTimeString,
+  status: PropTypes.oneOf(TASK_STATUS_VALUES).isRequired,
+};
+
+export default PropTypes.shape(task);
+```
+the `id` is a number, the `summary` is mandatory string, the `priority` has values from a well known enumeration. We also define our custom PropTypes as shown below  
+``` JavaScript
+import moment from 'moment';
+
+const STRICT = true;
+const MANDATORY = true;
+
+const validateDateString = (props, propName, componentName, format, mandatory) => {
+  const dateString = props[propName];
+  if (mandatory && !(propName in props)) {
+    return Error(`Missing ${propName}.`);
+  }
+  if (!moment(dateString, format, STRICT).isValid()) {
+    return Error(`Invalid prop ${propName} passed to ${componentName}. Expected a date of the format ${format}.`);
+  }
+};
+
+const CustomProps = {
+  localDateString: (props, propName, componentName) =>
+    validateDateString(props, propName, componentName, 'YYYY-MM-DD', MANDATORY),
+  localTimeString: (props, propName, componentName) =>
+    validateDateString(props, propName, componentName, 'HH:mm', MANDATORY),
+};
+
+export default CustomProps;
+```
+where we did ensure that the date and time formats are correct. Once the PropTypes defined, the components can use them for type checking  
+``` JavaScript
+import React from 'react';
+import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
+import task from '../../../prop-types/taskPropType';
+import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/taskUtils';
+import styles from './TasksProgressBar.module.css';
+
+export default function TasksProgressBar(props) {
+  .
+  .
+  .
+  return (
+    <React.Fragment>
+      .
+      .
+      .
+    </React.Fragment>
+  );
+}
+
+TasksProgressBar.propTypes = {
+  tasks: PropTypes.arrayOf(task),
+};
+```
+You can test the type validation by providing wrong data format in input anb observing the error message in the console.
+
+![alt text](./images/5-type-checking-with-proptypes.png "Type checking error with PropTypes")
 
 **[:arrow_double_up: Steps](#task-manager-gui)**

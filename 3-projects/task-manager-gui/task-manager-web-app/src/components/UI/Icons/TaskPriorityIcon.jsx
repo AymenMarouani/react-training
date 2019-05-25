@@ -1,6 +1,6 @@
 import React from 'react';
 import { SvgIcon } from '@material-ui/core';
-import { TASK_PRIORITY } from '../../../common/utils/tasksUtils';
+import { TASK_PRIORITY } from '../../../common/utils/taskUtils';
 
 export default function TaskPriorityIcon(props) {
   const { taskPriority } = props;
