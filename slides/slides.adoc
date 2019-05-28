@@ -71,3 +71,31 @@ image::codesandbox.png[height=35%, width=35%]
 image::base-tools.png[]
 
 == Developing a Typical React Based Application
+
+[%notitle]
+=== How Obtain a Global State Across Components ?
+[%step]
+* React, as a JavaScript Library, do only one thing and do it well: declaring UI components and their hierarchy, the View part of the application
+* Components pass data as props and hold internal state, but what about shared data that can be altered concurrently ?
+* How can we maintain a consistent state between not only components but also pages ?
+
+[%notitle]
+=== Introducing Redux
++++
+<p class="fragment">Long Story Short ...</p>
+<p class="fragment"><img src="./images/redux-logo.png" /></p>
+<p class="fragment">not the unique solution (there's also <em>Flux</em>), but the widely adopted, for the moment</p>
+<p class="fragment">can be used out of React</p>
++++
+
+=== The Main Principles of Redux
+[%step]
+* Single source of truth
+    -> application's *_State_* is stored as a _Tree_ on a unique *_Store_*
+* State is read-only
+    -> the only way to affect the _State_ is by dispatching *_Events_*  to the _Store_
+* Changes are made with pure functions
+    -> the _State_ is _Immutable_ and change events are intercepted by functions with no collateral effects called *_Reducers_*
+
+[%notitle]
+=== Redux Diagram
