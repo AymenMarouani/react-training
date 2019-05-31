@@ -5,25 +5,15 @@ import task from '../../../prop-types/taskPropType';
 import Typography from '@material-ui/core/Typography';
 import TasksProgressBar from '../TasksProgressBar';
 import TasksTabbedContainer from '../TasksTabbedContainer';
-import mockTasks from '../../../common/mocks/tasks';
 import styles from './TasksOverview.module.css';
 
 export default class TasksOverview extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-    };
-  }
-
   componentDidMount() {
-    this.setState({
-      tasks: mockTasks,
-    });
+    this.props.fetchTasks();
   }
 
   render() {
-    const { tasks } = this.state;
+    const { tasks } = this.props;
     return (
       <React.Fragment>
         <div className={styles.topContainer}>
@@ -39,5 +29,6 @@ export default class TasksOverview extends Component {
 }
 
 TasksOverview.propTypes = {
+  fetchTasks: PropTypes.func,
   tasks: PropTypes.arrayOf(task),
 };

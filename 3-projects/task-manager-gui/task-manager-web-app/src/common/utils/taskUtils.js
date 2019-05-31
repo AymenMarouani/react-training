@@ -21,7 +21,7 @@ export const TASK_STATUS = {
 export const TASK_STATUS_VALUES = valuesOf(TASK_STATUS);
 
 export const getScheduledTasks = (tasks = []) => {
-  return tasks.filter(task => task.status === 'SCHEDULED');
+  return tasks.filter(task => task.status === TASK_STATUS.SCHEDULED);
 };
 
 export const countScheduledTasks = tasks => {
@@ -29,7 +29,7 @@ export const countScheduledTasks = tasks => {
 };
 
 export const getFinishedTasks = (tasks = []) => {
-  return tasks.filter(task => task.status === 'FINISHED');
+  return tasks.filter(task => task.status === TASK_STATUS.FINISHED);
 };
 
 export const countFinishedTasks = tasks => {
@@ -37,7 +37,7 @@ export const countFinishedTasks = tasks => {
 };
 
 export const getCancelledTasks = (tasks = []) => {
-  return tasks.filter(task => task.status === 'CANCELLED');
+  return tasks.filter(task => task.status === TASK_STATUS.CANCELLED);
 };
 
 export const countCancelledTasks = tasks => {
