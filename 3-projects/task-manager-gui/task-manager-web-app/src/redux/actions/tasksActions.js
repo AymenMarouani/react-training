@@ -9,5 +9,8 @@ export const fetchAllTasks = () => dispatch => {
   dispatch({ type: FETCH_TASKS });
   return getAllTasks()
     .then(response => dispatch(fetchAllTasksSuccess(response)))
-    .catch(error => dispatch(fetchAllTasksFailure(error)));
+    .catch(error => {
+      dispatch(fetchAllTasksFailure(error));
+      throw error;
+    });
 };

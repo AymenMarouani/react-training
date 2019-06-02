@@ -22,7 +22,6 @@ export default class TasksTabbedContainer extends Component {
 
   render() {
     const { tasks } = this.props;
-    const { selectedTabIndex } = this.state;
     const totalTasksCount = tasks.length;
     const scheduledTasks = getScheduledTasks(tasks);
     const scheduledTasksCount = scheduledTasks.length;
@@ -30,6 +29,7 @@ export default class TasksTabbedContainer extends Component {
     const finishedTasksCount = finishedTasks.length;
     const cancelledTasks = getCancelledTasks(tasks);
     const cancelledTasksCount = cancelledTasks.length;
+    const { selectedTabIndex } = this.state;
     return (
       <React.Fragment>
         <Tabs value={selectedTabIndex} onChange={this.handleChange}>

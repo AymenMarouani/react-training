@@ -9,7 +9,10 @@ import styles from './TasksOverview.module.css';
 
 export default class TasksOverview extends Component {
   componentDidMount() {
-    this.props.fetchTasks();
+    const { fetchTasks, showNotificationBox } = this.props;
+    fetchTasks().catch(error => {
+      showNotificationBox(error.message);
+    });
   }
 
   render() {
@@ -30,5 +33,6 @@ export default class TasksOverview extends Component {
 
 TasksOverview.propTypes = {
   fetchTasks: PropTypes.func,
+  showNotificationBox: PropTypes.func,
   tasks: PropTypes.arrayOf(task),
 };
