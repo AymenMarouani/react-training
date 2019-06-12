@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import task from '../../../prop-types/taskPropType';
+import { taskPropType as task } from '../../../prop-types';
 import Typography from '@material-ui/core/Typography';
 import TasksProgressBar from '../TasksProgressBar';
 import TasksTabbedContainer from '../TasksTabbedContainer';
@@ -9,10 +9,14 @@ import styles from './TasksOverview.module.css';
 
 export default class TasksOverview extends Component {
   componentDidMount() {
-    const { fetchTasks, showNotificationBox } = this.props;
-    fetchTasks().catch(error => {
-      showNotificationBox(error.message);
-    });
+    const { fetchTasks, showErrorNotification, showSuccessNotification } = this.props;
+    fetchTasks()
+      .then(response => {
+        showSuccessNotification(`${response.length} tasks found`);
+      })
+      .catch(error => {
+        showErrorNotification(error.message);
+      });
   }
 
   render() {
@@ -33,6 +37,7 @@ export default class TasksOverview extends Component {
 
 TasksOverview.propTypes = {
   fetchTasks: PropTypes.func,
-  showNotificationBox: PropTypes.func,
+  showErrorNotification: PropTypes.func,
+  showSuccessNotification: PropTypes.func,
   tasks: PropTypes.arrayOf(task),
 };

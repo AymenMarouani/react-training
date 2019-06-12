@@ -8,9 +8,14 @@ export const fetchAllTasksFailure = error => ({ type: FETCH_TASKS_FAILURE, error
 export const fetchAllTasks = () => dispatch => {
   dispatch({ type: FETCH_TASKS });
   return getAllTasks()
-    .then(response => dispatch(fetchAllTasksSuccess(response)))
+    .then(response => {
+      dispatch(fetchAllTasksSuccess(response));
+      return response;
+    })
     .catch(error => {
       dispatch(fetchAllTasksFailure(error));
       throw error;
     });
 };
+
+export default fetchAllTasks;

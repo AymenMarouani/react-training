@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import TasksOverview from './TasksOverview';
-import { fetchAllTasks } from '../../../redux/actions/tasksActions';
-import { showNotificationBox } from '../../../redux/actions/uiActions';
+import { fetchAllTasks, showErrorNotification, showSuccessNotification } from '../../../redux/actions';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +11,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTasks: () => dispatch(fetchAllTasks()),
-    showNotificationBox: message => dispatch(showNotificationBox(message)),
+    showErrorNotification: message => dispatch(showErrorNotification(message)),
+    showSuccessNotification: message => dispatch(showSuccessNotification(message)),
   };
 };
 

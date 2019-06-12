@@ -6,6 +6,7 @@ const mapStateToProps = state => {
   return {
     isOpen: state.ui.notificationBox.isOpen,
     message: state.ui.notificationBox.message,
+    type: state.ui.notificationBox.notificationType,
   };
 };
 
