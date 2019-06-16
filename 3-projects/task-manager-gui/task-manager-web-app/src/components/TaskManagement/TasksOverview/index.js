@@ -5,6 +5,7 @@ import { fetchAllTasks, showErrorNotification, showSuccessNotification } from '.
 const mapStateToProps = state => {
   return {
     tasks: state.tasks.content,
+    loading: state.tasks.loading,
   };
 };
 

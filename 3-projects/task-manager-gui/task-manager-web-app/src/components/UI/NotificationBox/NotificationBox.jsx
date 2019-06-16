@@ -24,7 +24,7 @@ export default class NotificationBox extends PureComponent {
       case NOTIFICATION_TYPE.ERROR:
         return { backgroundColor: '#d32f2f' };
       case NOTIFICATION_TYPE.INFO:
-        return { backgroundColor: 'rgb(23, 105, 170)' };
+        return { backgroundColor: '#1769aa' };
       default:
         return;
     }

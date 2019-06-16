@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { taskPropType as task } from '../../../prop-types';
-import Typography from '@material-ui/core/Typography';
+import { Spinner } from '../../UI';
 import TasksProgressBar from '../TasksProgressBar';
 import TasksTabbedContainer from '../TasksTabbedContainer';
+import TasksControlBar from '../TasksControlBar';
 import styles from './TasksOverview.module.css';
 
 export default class TasksOverview extends Component {
@@ -20,16 +20,17 @@ export default class TasksOverview extends Component {
   }
 
   render() {
-    const { tasks } = this.props;
+    const { loading, tasks } = this.props;
     return (
       <React.Fragment>
-        <div className={styles.topContainer}>
-          <Typography variant="h4" color="inherit">
-            To Do List for {moment().format('dddd, MMMM Do YYYY')}
-          </Typography>
-        </div>
+        <TasksControlBar />
         <TasksProgressBar tasks={tasks} />
         <TasksTabbedContainer tasks={tasks} />
+        {loading && (
+          <div className={styles.contentLoading}>
+            <Spinner />
+          </div>
+        )}
       </React.Fragment>
     );
   }
@@ -40,4 +41,5 @@ TasksOverview.propTypes = {
   showErrorNotification: PropTypes.func,
   showSuccessNotification: PropTypes.func,
   tasks: PropTypes.arrayOf(task),
+  loading: PropTypes.bool,
 };
