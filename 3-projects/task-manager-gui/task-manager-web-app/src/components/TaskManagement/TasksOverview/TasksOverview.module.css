@@ -1,4 +1,6 @@
 .contentLoading {
+  background-color: grey;
+  opacity: 0.5;
   position: fixed;
   height: 100%;
   width: 100%;

@@ -27,9 +27,10 @@ export default class TasksOverview extends Component {
         <TasksProgressBar tasks={tasks} />
         <TasksTabbedContainer tasks={tasks} />
         {loading && (
-          <div className={styles.contentLoading}>
+          <React.Fragment>
+            <div className={styles.contentLoading} />
             <Spinner />
-          </div>
+          </React.Fragment>
         )}
       </React.Fragment>
     );
