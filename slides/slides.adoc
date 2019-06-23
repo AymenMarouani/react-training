@@ -84,7 +84,7 @@ image::base-tools.png[]
 +++
 <p class="fragment">Long Story Short ...</p>
 <p class="fragment"><img src="./images/redux-logo.png" /></p>
-<p class="fragment">not the unique solution (there's also <em>Flux</em>), but the widely adopted, for the moment</p>
+<p class="fragment">not the unique solution (there's also <em>Flux</em> and <em>MobX</em>), but the widely adopted, for the moment</p>
 <p class="fragment">can be used independently of React</p>
 +++
 
