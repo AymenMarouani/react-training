@@ -9,6 +9,7 @@ We did follow the steps below when creating our application:
   - [Styling the components the right way](#Styling-the-components-the-right-way)
   - [Checking props with PropTypes](#Checking-props-with-PropTypes)
   - [Introducing Redux](#Introducing-Redux)
+  - [Managing environment based configuration](#Managing-environment-based-configuration)
 
 ## Initialize the project
 We'll start by creating a blank React application using the command line tool [`create-react-app`](https://github.com/facebook/create-react-app). First we have to install it by invoking
@@ -513,5 +514,112 @@ export const getAllTasks = () => {
     });
 };
 ```
+
+**[:arrow_double_up: Steps](#task-manager-gui)**
+
+## Managing environment based configuration
+If you take a look at the file `tasksApi.js` you'll notice two things:
+- we used the library [_axios_](https://github.com/axios/axios) to make asynchronous API calls, of course we did install it using the command `npm install axios`
+- the URL is hard coded which is not a good practice at all, as we are supposed to deploy our application in various environments namely _Development_, _Test_ and _Production_
+
+In order to make use of dynamic environment variables, we adopted the library [_dotenv_](https://github.com/motdotla/dotenv) to configure our deployment.  
+We start by installing the dependency
+``` Bash
+npm install --save dotenv
+```
+then we did add files to hold environment variables, first `.env` for common variables
+``` JavaScript
+REACT_APP_API_BASE_URL=/task-manager/api
+REACT_APP_API_VERSION=v1
+REACT_APP_API_TASKS=/tasks
+```
+the `.env.development` for the development environment
+``` JavaScript
+REACT_APP_SERVER_URL=http://localhost
+REACT_APP_SERVER_PORT=9090
+```
+and `.env.production` for the production setup
+``` JavaScript
+REACT_APP_SERVER_URL=http://prod-server.internal
+REACT_APP_SERVER_PORT=5050
+```
+
+:warning: because the creation of the project is done by the utility `create-react-app`, we have to respect a naming convention in order to make the environment variables detectable. All the environment variables must begin by the prefix `REACT_APP_` for their names. This convention can be ignored for boilerplate applications created without the tool `create-react-app`.
+
+Once the variables defined correctly, they can be accessed as shown in the file `config.js`
+``` JavaScript
+const SERVER_URL = `${process.env.REACT_APP_SERVER_URL}`;
+const SERVER_PORT = `${process.env.REACT_APP_SERVER_PORT}`;
+const API_CONTEXT = `${process.env.REACT_APP_API_BASE_URL}`;
+const API_VERSION = `${process.env.REACT_APP_API_VERSION}`;
+const TASKS_API = `${process.env.REACT_APP_API_TASKS}`;
+
+const API_BASE_URL = `${SERVER_URL}:${SERVER_PORT}${API_CONTEXT}/${API_VERSION}`;
+
+const TASKS_API_URL = `${API_BASE_URL}${TASKS_API}`;
+
+export default TASKS_API_URL;
+```
+Finally, we have to invoke as early as possible the call to `configure()` method of the dotenv library
+``` JavaScript
+// env.js
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// the main index.js
+import _ from './env'; // eslint-disable-line
+.
+.
+.
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+The configuration by environment is not only useful for defining variables, but also for hiding plane UI code available via the development plugins for React and Redux. In fact, we did install the [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and the [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) chrome plugins in order to inspect the code and the store when we are in Test or Development modes.
+
+![alt text](./images/7-react-dev-tools-development-mode.png "React developer tools chrome plugin, development")
+
+the plugin will disclose the components' props and names and make the UI clearer to inspect, this is intended for non Production purposes and the plugin did issue a warning sign as show above.
+
+![alt text](./images/7-react-redux-app-development-mode.png "React developer tools components disclosure")
+
+In addition, the Redux plugin will show the content of the store, although it's strongly discouraged to store sensitive data in the store (like passwords, tokens), but the store content is not meant to be shown in a production context
+
+![alt text](./images/7-redux-dev-tools-development-mode.png "Redux DevTools store display")
+
+:information_source: installing the Reudx DevTools chrome plugin is not enough to start inspecting the store content in the browser, we have to install the dependency
+``` Bash
+npm install --save redux-devtools-extension
+```
+and add the developer extension in the store definition
+``` JavaScript
+createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+```
+
+When running the command `npm start`, the mode is set as Development. To set the mode to Production, we run the command `npm run build` followed by `serve -s build` to start the production ready packaged application.
+
+:warning: [_serve_](https://github.com/zeit/serve) must be installed first by invoking `npm install -g serve`
+
+The store will be configured as below
+``` JavaScript
+const reducers = combineReducers({
+  tasks: tasksReducer,
+  ui: uiReducer,
+});
+
+const store =
+  process.env.NODE_ENV === 'production'
+    ? createStore(reducers, applyMiddleware(thunk))
+    : createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+
+export default store;
+```
+once started, the Redux DevTools can be no more used
+
+![alt text](./images/7-react-redux-app-production-mode.png "React developer tools chrome plugin, production")
+
+and the React code is obfuscated.
+
+![alt text](./images/7-react-dev-tools-production-mode.png "React developer tools code obfuscation")
 
 **[:arrow_double_up: Steps](#task-manager-gui)**
