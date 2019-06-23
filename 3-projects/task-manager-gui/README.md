@@ -575,7 +575,7 @@ import _ from './env'; // eslint-disable-line
 
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
-The configuration by environment is not only useful for defining variables, but also for hiding plan UI code available via the development plugins for React and Redux. In fact, we did install the [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and the [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) chrome plugins in order to inspect the code and the store when we are in Test or Development modes.
+The configuration by environment is not only useful for defining variables, but also for hiding plane UI code available via the development plugins for React and Redux. In fact, we did install the [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and the [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) chrome plugins in order to inspect the code and the store when we are in Test or Development modes.
 
 ![alt text](./images/7-react-dev-tools-development-mode.png "React developer tools chrome plugin, development")
 
