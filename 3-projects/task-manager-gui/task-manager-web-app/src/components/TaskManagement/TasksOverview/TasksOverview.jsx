@@ -1,43 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import task from '../../../prop-types/taskPropType';
-import Typography from '@material-ui/core/Typography';
+import { taskPropType as task } from '../../../prop-types';
+import { Spinner } from '../../UI';
 import TasksProgressBar from '../TasksProgressBar';
 import TasksTabbedContainer from '../TasksTabbedContainer';
-import mockTasks from '../../../common/mocks/tasks';
+import TasksControlBar from '../TasksControlBar';
 import styles from './TasksOverview.module.css';
 
 export default class TasksOverview extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-    };
-  }
-
   componentDidMount() {
-    this.setState({
-      tasks: mockTasks,
-    });
+    const { fetchTasks, showErrorNotification, showSuccessNotification } = this.props;
+    fetchTasks()
+      .then(response => {
+        showSuccessNotification(`${response.length} tasks found`);
+      })
+      .catch(error => {
+        showErrorNotification(error.message);
+      });
   }
 
   render() {
-    const { tasks } = this.state;
+    const { loading, tasks } = this.props;
     return (
       <React.Fragment>
-        <div className={styles.topContainer}>
-          <Typography variant="h4" color="inherit">
-            To Do List for {moment().format('dddd, MMMM Do YYYY')}
-          </Typography>
-        </div>
+        <TasksControlBar />
         <TasksProgressBar tasks={tasks} />
         <TasksTabbedContainer tasks={tasks} />
+        {loading && (
+          <React.Fragment>
+            <div className={styles.contentLoading} />
+            <Spinner />
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
 }
 
 TasksOverview.propTypes = {
+  fetchTasks: PropTypes.func,
+  showErrorNotification: PropTypes.func,
+  showSuccessNotification: PropTypes.func,
   tasks: PropTypes.arrayOf(task),
+  loading: PropTypes.bool,
 };

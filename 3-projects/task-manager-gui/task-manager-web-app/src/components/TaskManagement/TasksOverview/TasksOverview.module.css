@@ -1,5 +1,10 @@
-.topContainer {
-  margin-top: 23px;
-  margin-bottom: 17px;
-  margin-left: 15px;
+.contentLoading {
+  background-color: grey;
+  opacity: 0.5;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }

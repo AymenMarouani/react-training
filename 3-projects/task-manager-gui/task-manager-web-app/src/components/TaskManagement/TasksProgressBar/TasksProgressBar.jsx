@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
-import task from '../../../prop-types/taskPropType';
+import { taskPropType as task } from '../../../prop-types';
 import { countScheduledTasks, countFinishedTasks, countCancelledTasks } from '../../../common/utils/taskUtils';
 import styles from './TasksProgressBar.module.css';
 

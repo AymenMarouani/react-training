@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../UI/Header';
 import TasksOverview from '../TaskManagement';
+import { Header, NotificationBox } from '../UI';
 
 export default class Home extends Component {
   render() {
@@ -8,6 +8,7 @@ export default class Home extends Component {
       <React.Fragment>
         <Header />
         <TasksOverview />
+        <NotificationBox />
       </React.Fragment>
     );
   }

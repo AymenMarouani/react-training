@@ -5,8 +5,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import task from '../../../prop-types/taskPropType';
-import { TaskPriorityIcon, TaskStatusIcon } from '../../UI/Icons';
+import { taskPropType as task } from '../../../prop-types';
+import { TaskPriorityIcon, TaskStatusIcon } from '../../UI';
 import styles from './TasksTable.styles';
 
 export default function TasksTable(props) {
