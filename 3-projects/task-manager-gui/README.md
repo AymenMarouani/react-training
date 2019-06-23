@@ -2,12 +2,13 @@
 This is the actual React user interface that we'll use as an elaborate and progressive example for the training.
 
 We did follow the steps below when creating our application:
-- [Task Manager GUI](#task-manager-gui)
-  - [Initialize the project](#initialize-the-project)
-  - [Display mock data in a table](#display-mock-data-in-a-table)
-  - [Display the tasks in a tabbed view with a progress bar](#display-the-tasks-in-a-tabbed-view-with-a-progress-bar)
-  - [Styling the components the right way](#styling-the-components-the-right-way)
-  - [Checking props with PropTypes](#checking-props-with-proptypes)
+- [Task Manager GUI](#Task-Manager-GUI)
+  - [Initialize the project](#Initialize-the-project)
+  - [Display mock data in a table](#Display-mock-data-in-a-table)
+  - [Display the tasks in a tabbed view with a progress bar](#Display-the-tasks-in-a-tabbed-view-with-a-progress-bar)
+  - [Styling the components the right way](#Styling-the-components-the-right-way)
+  - [Checking props with PropTypes](#Checking-props-with-PropTypes)
+  - [Introducing Redux](#Introducing-Redux)
 
 ## Initialize the project
 We'll start by creating a blank React application using the command line tool [`create-react-app`](https://github.com/facebook/create-react-app). First we have to install it by invoking
@@ -323,5 +324,190 @@ TasksProgressBar.propTypes = {
 You can test the type validation by providing wrong data format in input anb observing the error message in the console.
 
 ![alt text](./images/5-type-checking-with-proptypes.png "Type checking error with PropTypes")
+
+**[:arrow_double_up: Steps](#task-manager-gui)**
+
+## Introducing Redux
+We'll adopt the [_Redux_](https://redux.js.org/) library in order to keep a coherent state between components. We start by adding the Redux dependency to our project.
+``` Bash
+npm install --save react-redux
+npm install --save redux
+```
+once installed, we have to define our _Initial State_ for the tasks, i.e how we'll store the tasks in the _Store_
+``` JavaScript
+const initialState = {
+  content: [],
+  error: null,
+  loading: false,
+};
+```
+we have to define the main _Actions Types_ (fetching tasks, adding a task)
+``` JavaScript
+export const FETCH_TASKS = 'FETCH_TASKS';
+export const FETCH_TASKS_SUCCESS = 'FETCH_TASKS_SUCCESS';
+export const FETCH_TASKS_FAILURE = 'FETCH_TASKS_FAILURE';
+
+export const ADD_TASK = 'ADD_TASK';
+export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
+export const ADD_TASK_FAILURE = 'ADD_TASK_FAILURE';
+```
+in this case, we did adopt a specific pattern in order to track the outcome of a given action. We split it into three main phases (action start `ADD_TASK`, action success `ADD_TASK_SUCCESS`, action failure `ADD_TASK_FAILURE`).
+Next, the definition of the _Reducer_ will be as follow
+``` JavaScript
+export default function tasksReducer(state = initialState, action) {
+  switch (action.type) {
+    case FETCH_TASKS:
+    case ADD_TASK:
+      return {
+        ...state,
+        ...state.tasks,
+        loading: true,
+      };
+    case FETCH_TASKS_SUCCESS:
+      return {
+        ...state,
+        content: action.tasks,
+        error: null,
+        loading: false,
+      };
+    case ADD_TASK_SUCCESS:
+      return {
+        ...state,
+        content: [...state.tasks.content, action.tasks],
+        error: null,
+        loading: false,
+      };
+    case FETCH_TASKS_FAILURE:
+    case ADD_TASK_FAILURE:
+      return {
+        ...state,
+        ...state.tasks,
+        error: action.error,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+}
+```
+the above reducer will accept the _Actions_ dispatched from the components
+``` JavaScript
+import { getAllTasks } from '../../common/api/tasksApi';
+import { FETCH_TASKS, FETCH_TASKS_SUCCESS, FETCH_TASKS_FAILURE } from '../actionTypes';
+
+export const fetchAllTasksSuccess = tasks => ({ type: FETCH_TASKS_SUCCESS, tasks });
+
+export const fetchAllTasksFailure = error => ({ type: FETCH_TASKS_FAILURE, error });
+
+export const fetchAllTasks = () => dispatch => {
+  dispatch({ type: FETCH_TASKS });
+  return getAllTasks()
+    .then(response => {
+      dispatch(fetchAllTasksSuccess(response));
+      return response;
+    })
+    .catch(error => {
+      dispatch(fetchAllTasksFailure(error));
+      throw error;
+    });
+};
+
+export default fetchAllTasks;
+```
+The same steps are used to create another coherent state for the UI to manage components' visibility. The _Store_ has to be exposed
+``` JavaScript
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { tasksReducer, uiReducer } from './reducers';
+
+export const store = createStore(
+  combineReducers({
+    tasks: tasksReducer,
+    ui: uiReducer,
+  }),
+  composeWithDevTools(applyMiddleware(thunk))
+);
+```
+we used the call `createStore` with the combined reducers for the tasks and the UI `combineReducers` and the [_Thunk_](https://github.com/reduxjs/redux-thunk) middleware to manage asynchronous calls.  
+Finally, the components must dispatch the actions in order to interact with the Redux store.
+``` JavaScript
+export default class TasksOverview extends Component {
+  componentDidMount() {
+    const { fetchTasks, showErrorNotification, showSuccessNotification } = this.props;
+    fetchTasks()
+      .then(response => {
+        showSuccessNotification(`${response.length} tasks found`);
+      })
+      .catch(error => {
+        showErrorNotification(error.message);
+      });
+  }
+
+  render() {
+    const { loading, tasks } = this.props;
+    return (
+      <React.Fragment>
+        <TasksControlBar />
+        <TasksProgressBar tasks={tasks} />
+        <TasksTabbedContainer tasks={tasks} />
+        {loading && (
+          <React.Fragment>
+            <div className={styles.contentLoading} />
+            <Spinner />
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    );
+  }
+}
+
+TasksOverview.propTypes = {
+  fetchTasks: PropTypes.func,
+  showErrorNotification: PropTypes.func,
+  showSuccessNotification: PropTypes.func,
+  tasks: PropTypes.arrayOf(task),
+  loading: PropTypes.bool,
+};
+```
+the component shown above is not "aware" of Redux, it did receive props from its connected version defined in the file `index.js`
+``` JavaScript
+import { connect } from 'react-redux';
+import TasksOverview from './TasksOverview';
+import { fetchAllTasks, showErrorNotification, showSuccessNotification } from '../../../redux/actions';
+
+const mapStateToProps = state => {
+  return {
+    tasks: state.tasks.content,
+    loading: state.tasks.loading,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTasks: () => dispatch(fetchAllTasks()),
+    showErrorNotification: message => dispatch(showErrorNotification(message)),
+    showSuccessNotification: message => dispatch(showSuccessNotification(message)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TasksOverview);
+```
+we used the functions `mapStateToProps`, to fetch values from the store, and `mapDispatchToProps` to dispatch actions to the store.  
+In order to test the actual state of the application, start the [_Tasks API_](../task-manager-back-end) and then start the React front end to fetch directly tasks from the backend. The direct call to the API is seen in the file `tasksApi.js`
+``` JavaScript
+import axios from 'axios';
+
+export const getAllTasks = () => {
+  return axios
+    .get('http://localhost:9090/task-manager/api/v1/tasks') //-
+    .then(response => {
+      return response.data.tasks;
+    });
+};
+```
 
 **[:arrow_double_up: Steps](#task-manager-gui)**
