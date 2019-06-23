@@ -560,6 +560,21 @@ const TASKS_API_URL = `${API_BASE_URL}${TASKS_API}`;
 
 export default TASKS_API_URL;
 ```
+Finally, we have to invoke as early as possible the call to `configure()` method of the dotenv library
+``` JavaScript
+// env.js
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// the main index.js
+import _ from './env'; // eslint-disable-line
+.
+.
+.
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
 The configuration by environment is not only useful for defining variables, but also for hiding plan UI code available via the development plugins for React and Redux. In fact, we did install the [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and the [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) chrome plugins in order to inspect the code and the store when we are in Test or Development modes.
 
 ![alt text](./images/7-react-dev-tools-development-mode.png "React developer tools chrome plugin, development")
