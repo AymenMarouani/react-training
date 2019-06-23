@@ -414,6 +414,10 @@ export const fetchAllTasks = () => dispatch => {
 
 export default fetchAllTasks;
 ```
+a typical _Action_ is defined by a type and a payload
+``` JavaScript
+{ type: FETCH_TASKS_SUCCESS, tasks }
+```
 The same steps are used to create another coherent state for the UI to manage components' visibility. The _Store_ has to be exposed
 ``` JavaScript
 import { createStore, combineReducers, applyMiddleware } from 'redux';
