@@ -451,7 +451,7 @@ This feature was introduced in the version 16.7 of React. Hooks are the new form
 1. changing a component from functional form to the class form is very costly in terms of code migration
 2. big projects start to go into _wrapper hell_ as components clutter and become more and more entangled
 
-Before playing with hooks with playground, be sure to update the React version in side the file _package.json_ to 16.7 or above
+Before playing with hooks with playground, be sure to update the React version in side the file `package.json` to 16.7 or above
 ``` JSON
 "dependencies": {
   "react": "16.8.5",

@@ -58,7 +58,7 @@ mkdir scr
 mkdir dist
 mkdir config
 ```
-the _src_ directory will contain the code for our components, the _dist_ is for the packaged resulting application (more details in the next section) and the _config_ directory is for configuration files of the other tools.
+the `src` directory will contain the code for our components, the `dist` is for the packaged resulting application (more details in the next section) and the `config` directory is for configuration files of the other tools.
 
 **[:arrow_double_up: back to top](#creating-a-react-development-environment-from-scratch)**
 
@@ -70,7 +70,7 @@ npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge \
                     clean-webpack-plugin \
                     img-loader url-loader file-loader
 ```
-Once installed, we have to configure Webpack for out project. The configuration for Webpack will be contained inside files under the _config_ directory.
+Once installed, we have to configure Webpack for out project. The configuration for Webpack will be contained inside files under the `config` directory.
 ``` Bash
 mkdir ./config/webpack
 ```
@@ -94,7 +94,7 @@ const env = envs[process.env.NODE_ENV || 'development'];
 const envConfig = require(`./config/webpack/webpack.${env}`);
 module.exports = webpackMerge(common, envConfig);
 ```
-This file is the entry point for Webpack to select the mode (either development of production) and it depends on other configuration files that we'll create inside the _config/webpack_ directory as the following
+This file is the entry point for Webpack to select the mode (either development of production) and it depends on other configuration files that we'll create inside the `config/webpack` directory as the following
 ``` Bash
 touch ./config/webpack/paths.js
 touch ./config/webpack/rules.js
@@ -345,7 +345,7 @@ and copy the following content inside
     }
 }
 ```
-ESLint scans our source files to fix code quality bugs, but it can scan our imported modules directory _node_modules_ or the resulting bundle created by Webpack, so we have to instruct ESLint to ignore those directories by creating a file called `.eslintignore`
+ESLint scans our source files to fix code quality bugs, but it can scan our imported modules directory `node_modules` or the resulting bundle created by Webpack, so we have to instruct ESLint to ignore those directories by creating a file called `.eslintignore`
 ``` Bash
 touch .eslintignore
 ```
@@ -467,7 +467,7 @@ At the root directory of the project, add the file `index.html` with the followi
     </body>
 </html>
 ```
-Under the _src_ directory, create the file `index.js` with the following content
+Under the `src` directory, create the file `index.js` with the following content
 ``` jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
