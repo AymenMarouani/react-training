@@ -2,22 +2,22 @@
 
 This section introduces the concept of components in React and the underlying details behind. We'll use a [JavaScript playground](https://codesandbox.io/) to practice and play with the given snippets.
 
-- [React Basic Concepts Jump-start](#react-basic-concepts-jump-start)
-  - [Setup](#setup)
-  - [Hello React](#hello-react)
-  - [The React DOM API](#the-react-dom-api)
-  - [JSX](#jsx)
-  - [Props and the Functional React Component](#props-and-the-functional-react-component)
-  - [State and the Class Component](#state-and-the-class-component)
-  - [Custom Events](#custom-events)
-  - [The Component's LifeCycle](#the-components-lifecycle)
-  - [Introducing Hooks](#introducing-hooks)
-  - [Going Further](#going-further)
-  - [What's Next](#whats-next)
+- [React Basic Concepts Jump-start](#React-Basic-Concepts-Jump-start)
+  - [Setup](#Setup)
+  - [Hello React](#Hello-React)
+  - [The React DOM API](#The-React-DOM-API)
+  - [JSX](#JSX)
+  - [Props and the Functional React Component](#Props-and-the-Functional-React-Component)
+  - [State and the Class Component](#State-and-the-Class-Component)
+  - [Custom Events](#Custom-Events)
+  - [The Component's LifeCycle](#The-Components-LifeCycle)
+  - [Introducing Hooks](#Introducing-Hooks)
+  - [Going Further](#Going-Further)
+  - [What's Next](#Whats-Next)
 
 ## Setup
 1. Go to the following [link](https://codesandbox.io/s/vanilla)
-2. Clear the content of the file _index.js_
+2. Clear the content of the file `index.js`
 3. Import the React library by adding the following two lines
 ``` JavaScript
 import React from 'react'
