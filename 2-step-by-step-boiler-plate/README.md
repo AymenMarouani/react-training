@@ -417,7 +417,6 @@ insert_final_newline = true
 We are going to tell _git_ to ignore our JavaScript imported libraries and some of the local content via the file `.gitignore`
 ```
 node_modules
-package-lock.json
 dist
 ```
 
