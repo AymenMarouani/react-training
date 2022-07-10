@@ -13,7 +13,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "dotenv": "^8.0.0",
     "moment": "^2.29.4",
     "react": "^16.8.6",
